@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function($rootScope, $scope, spUtil) {
+	/* widget controller */
+	var c = this;
+
+	c.selectItem = function(idx) {
+
+		var id = c.data.notes[idx].sys_id;
+		console.log('Note Id= '+id);
+		$rootScope.noteID = id;
+		$rootScope.$emit('selectNote', id);
+	}
+
+
+	$rootScope.$on('deleteNote', function(event,data) {
+		c.data.notes.splice($scope.notePos, 1);
+	});
+
+	c.snNoteUpdate = function(name, sys_id) {
+
+		for(var i=0; i<c.data.notes.length; i++){
+			if(c.data.notes[i].sys_id == name.data.sys_id) {
+
+				if(name.data.record.note) {
+
+					c.data.notes[i].note = name.data.record.note.display_value;
+				}
+				if(name.data.record.title) {
+
+					c.data.notes[i].title = name.data.record.title.display_value;
+				}
+
+				c.server.update();
+
+			}
+
+
+		}
+
+	}
+
+
+	c.snNoteDelete = function(sysId) {
+
+		c.server.get({
+
+			action: 'sndeleteNote',
+			noteId: sysId
+		}).then(function(r) {
+
+			c.data.notes = r.data.notes;
+		});
+	}
+
+
+
+	spUtil.recordWatch($scope, "x_snc_createnotes_note","numberISNOTEMPTY^userDYNAMIC90d1921e5f510100a9ad2572f2b477fe",function(name) {
+
+		console.log(name);
+		console.log(name.data.operation);
+
+		if(name.data.operation == 'update') {
+
+			c.snNoteUpdate(name, name.data.sys_id);
+		}
+
+		if(name.data.operation == 'delete') {
+
+			c.snNoteDelete(name.data.sys_id);
+		}
+
+		if(name.data.operation == 'insert') {
+			c.server.refresh();
+		}
+	});
+
+
+	c.newNote = function() {
+
+		c.server.get({
+
+			action: 'newNote'
+
+		}).then(function(r) {
+			c.data.noteID = r.data.noteId;
+			$rootScope.$emit('selectNote', c.data.noteID);
+
+		});
+	}
+};]]></client_script>
+        <controller_as>c</controller_as>
+        <css/>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>new_notes_list</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>New Notes List</name>
+        <option_schema>[{"hint":"Specify a title for the Notes List widget","name":"title","section":"other","default_value":"Notes","label":"Title","type":"string"},{"hint":"Select Maximum number of records to display","name":"maximum_records_to_display","section":"other","default_value":"5","label":"Maximum records to display","type":"choice","choices":[{"label":"2","value":"2"},{"label":"3","value":"3"},{"label":"5","value":"5"},{"label":"7","value":"7"},{"label":"11","value":"11"},{"label":"13","value":"13"}]}]</option_schema>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	/* populate the 'data' object */
+	/* e.g., data.table = $sp.getValue('table'); */
+
+	data.notes = [];
+
+	var noteRec = new GlideRecord('x_snc_createnotes_note');
+	noteRec.addEncodedQuery('userDYNAMIC90d1921e5f510100a9ad2572f2b477fe');
+	noteRec.orderByDesc('sys_created_on');
+	noteRec.setLimit(options.maximum_records_to_display);
+	noteRec.query();
+
+	while(noteRec.next()) {
+
+		noteObj = {};
+
+		$sp.getRecordDisplayValues(noteObj, noteRec, "number,title,sys_id");
+
+		noteObj.note = noteRec.getValue('note').slice(0,20);
+
+		data.notes.push(noteObj);
+	}
+
+
+if(input) {
+	if (input.action == 'sndeleteNote') {
+
+		var delNote = new GlideRecord('x_snc_createnotes_note');
+		
+		
+		if(delNote.get(input.noteId)) {
+			delNote.deleteRecord();
+
+
+		}
+	}
+	
+	if(input.action == 'newNote') {
+		
+		var newNoteRec = new GlideRecord('x_snc_createnotes_note');
+		newNoteRec.newRecord();
+		var id = newNoteRec.insert();
+		
+		data.noteId = id;
+		data.newNotes = {};
+		
+		$sp.getRecordDisplayValues(data.newNotes,newNoteRec,"sys_id,title,note");
+	}
+}
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-26 08:56:49</sys_created_on>
+        <sys_id>0a2cde47c3cd6a5045927533e4013132</sys_id>
+        <sys_mod_count>30</sys_mod_count>
+        <sys_name>New Notes List</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_widget_0a2cde47c3cd6a5045927533e4013132</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-27 11:13:04</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading clearfix">
+    <h3 class="panel-title pull-left">
+      {{::c.options.title}}
+    </h3>
+        <button class="btn btn-default pull-right" ng-click="c.newNote()"> 
+      <span class="glyphicon glyphicon-plus"></span> 
+    </button>
+  </div>
+  <div class="panel-body"> 
+    <input placeholder="Filter" class="form-control" ng-model="noteFilter"/> 
+  </div>
+  
+  <div class="list-group">
+    <a class="list-group-item" ng-click="c.selectItem($index)" ng-repeat="note in data.notes">
+      <h4 class="list-group-item-heading">
+        {{note.title}}
+      </h4>
+      <p class="list-group-item-text">
+				{{note.note}}
+      </p>
+    </a>
+  </div>
+
+</div>]]></template>
+    </sp_widget>
+    <sys_es_latest_script action="INSERT_OR_UPDATE">
+        <id>0a2cde47c3cd6a5045927533e4013132</id>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-26 08:56:49</sys_created_on>
+        <sys_id>0a2cde47c3cd6a5045927533e4013135</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-26 08:56:49</sys_updated_on>
+        <table>sp_widget</table>
+        <use_es_latest>true</use_es_latest>
+    </sys_es_latest_script>
+</record_update>

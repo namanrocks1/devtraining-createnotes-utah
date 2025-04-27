@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container">
+    <sp_container action="DELETE">
+        <background_color/>
+        <background_image/>
+        <background_style>default</background_style>
+        <bootstrap_alt>false</bootstrap_alt>
+        <class_name/>
+        <container_class_name/>
+        <name>CreateNotes Home Test - Container 1</name>
+        <order>1</order>
+        <semantic_tag/>
+        <sp_page display_value="copy_of_notes_home_1">679b5a47c3cd6a5045927533e4013148</sp_page>
+        <subheader>false</subheader>
+        <sys_class_name>sp_container</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-26 08:54:27</sys_created_on>
+        <sys_id>6f9b5a47c3cd6a5045927533e401314b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>CreateNotes Home Test - Container 1</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_update_name>sp_container_6f9b5a47c3cd6a5045927533e401314b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-26 08:55:05</sys_updated_on>
+        <title/>
+        <width>container</width>
+    </sp_container>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</application>
+        <file_path/>
+        <instance_id>f5272d31fbf06e100c92f633beefdcd7</instance_id>
+        <instance_name>dev323610</instance_name>
+        <name>sp_container_6f9b5a47c3cd6a5045927533e401314b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_container"><sp_container action="INSERT_OR_UPDATE"><background_color/><background_image/><background_style>default</background_style><bootstrap_alt>false</bootstrap_alt><class_name/><container_class_name/><name>CreateNotes Home Test - Container 1</name><order>1</order><semantic_tag/><sp_page display_value="copy_of_notes_home_1">679b5a47c3cd6a5045927533e4013148</sp_page><subheader>false</subheader><sys_class_name>sp_container</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2025-04-26 08:54:27</sys_created_on><sys_id>6f9b5a47c3cd6a5045927533e401314b</sys_id><sys_mod_count>1</sys_mod_count><sys_name>CreateNotes Home Test - Container 1</sys_name><sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package><sys_policy/><sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope><sys_update_name>sp_container_6f9b5a47c3cd6a5045927533e401314b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2025-04-26 08:55:05</sys_updated_on><title/><width>container</width></sp_container></record_update>]]></payload>
+        <payload_hash>896852998</payload_hash>
+        <record_name>CreateNotes Home Test - Container 1</record_name>
+        <reverted_from/>
+        <source>fe824dfec3052a5045927533e40131d1</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-26 08:55:05</sys_created_on>
+        <sys_id>b8cb5e47c3cd6a5045927533e4013189</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>196714eb3480000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-26 08:55:05</sys_updated_on>
+        <type>Container</type>
+        <update_guid>7ccb5e4795cd6a50067ca3ef119a5888</update_guid>
+        <update_guid_history>7ccb5e4795cd6a50067ca3ef119a5888:896852998,6b9b5a47c9cd6a5028ebacb6827e244d:-1924056264</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete display_value="CreateNotes Home Test - Container 1">54db5247c3cd6a5045927533e401318b</sys_audit_delete>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2025-04-26 08:55:22</sys_created_on>
+        <sys_db_object display_value="" name="sp_container">sp_container</sys_db_object>
+        <sys_id>c0a39128531a4011b3c7923993c79aa9</sys_id>
+        <sys_metadata>6f9b5a47c3cd6a5045927533e401314b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>CreateNotes Home Test - Container 1</sys_name>
+        <sys_package display_value="CreateNotes" source="x_snc_createnotes">df5fd9a5090232007f44e1046c8ff69f</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="CreateNotes">df5fd9a5090232007f44e1046c8ff69f</sys_scope>
+        <sys_scope_delete display_value="">64daa03572704d49a928bf08a985d6f9</sys_scope_delete>
+        <sys_update_name>sp_container_6f9b5a47c3cd6a5045927533e401314b</sys_update_name>
+        <sys_update_version display_value="sp_container_6f9b5a47c3cd6a5045927533e401314b">b8cb5e47c3cd6a5045927533e4013189</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2025-04-26 08:55:22</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
